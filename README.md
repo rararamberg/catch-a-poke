@@ -26,8 +26,9 @@ Catch-a-Poké
 
 ## Wireframes
 
-[Figma]()
-(![Image Text]())
+[Figma](https://www.figma.com/file/1H1PmkWSCyYaMRcu9mT7nZ/Pok%C3%A9mon-Game?node-id=0%3A1)
+![Desktop](https://i.imgur.com/iNkueXX.png)
+![Tablet / Mobile](https://i.imgur.com/o0L4Oix.png)
 
 [Wireframe Mobile] ()
 
