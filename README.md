@@ -30,8 +30,6 @@ Catch-a-Poké
 ![Desktop](https://i.imgur.com/iNkueXX.png)
 ![Tablet / Mobile](https://i.imgur.com/o0L4Oix.png)
 
-[Wireframe Mobile] ()
-
 ## API and Data Sample
 
 [Artwork URL](https://pokeapi.co/)
