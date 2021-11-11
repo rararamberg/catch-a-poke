@@ -4,9 +4,9 @@
 
 ## Description
 
-Catch-a-Poké
+Catch-a-Poké is a game that allows user to catch different types of pokemon. Once a pokemon is caught a user can check out information cards that tell more about the pokemon in the user's collection. User can replay the game to discover more pokemon.
 
-### MVP/PostMVP
+## MVP/PostMVP
 
 #### MVP
 
