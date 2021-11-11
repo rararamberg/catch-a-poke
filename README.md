@@ -21,6 +21,7 @@ Catch-a-Poké
 - Random background generates each new game
 - Make game more challenging to catch pokémon by increasing speed
 - Each click on play screen register a pokêball used
+- Hamburger menu with link to how to section
 - Add audio
 
 ## Wireframes
@@ -10517,33 +10518,25 @@ Catch-a-Poké
     weight: 69
     }
 
-
 </details>
 
 ## Project Schedule
 
-| Day         | Deliverable                                        | Status     |
-| ----------- | -------------------------------------------------- | ---------- |
-| April 16-18 | Prompt / Wireframes / Priority Matrix / Timeframes | Incomplete |
-| April 19    | Project Approval                                   | Incomplete |
-| April 19    | Core Application Structure (HTML, CSS, etc.)       | Incomplete |
-| April 19    | Pseudocode JS Steps                                | Incomplete |
-| April 19    | API request for Dropdowns                          | Incomplete |
-| April 19    | Append Data to Option Tags in Drop Down Menu       | Incomplete |
-| April 20    | Get Option Values in Drop Down Menu                | Incomplete |
-| April 20    | Drop Down Menu Event Handlers                      | Incomplete |
-| April 20    | Get values for Result artwork info                 | Incomplete |
-| April 20    | API Image request for Artwork image tags           | Incomplete |
-| April 21    | Append Results to DOM                              | Incomplete |
-| April 21    | Remove Previous Results                            | Incomplete |
-| April 21    | CSS Flex and Media Queries                         | Incomplete |
-| April 21    | Testing MVP Requirements                           | Incomplete |
-| April 22    | Post-MVP and Advanced CSS                          | Incomplete |
-| April 23    | Presentations                                      | Incomplete |
-
-## Priority Matrix
-
-[Priority Matrix] (https://wireframe.cc/6bvAs1)
+| Day      | Deliverable                                        | Status     |
+| -------- | -------------------------------------------------- | ---------- |
+| Nov 9-10 | Prompt / Wireframes / Priority Matrix / Timeframes | Incomplete |
+| Nov 10   | Core Application Structure (HTML, CSS, etc.)       | Incomplete |
+| Nov 10   | Pseudocode JS Steps                                | Incomplete |
+| Nov 10   | API GET request function                           | Incomplete |
+| Nov 10   | Append Pokemon Images to Screen                    | Incomplete |
+| Nov 11   | addEventListeners to Pokemon images                | Incomplete |
+| Nov 11   | Collection section renders pokemon                 | Incomplete |
+| Nov 11   | Modal Window and API Get Request                   | Incomplete |
+| Nov 12   | Generate Random Pokemon                            | Incomplete |
+| Nov 12   | Remove Previous Results and play new game          | Incomplete |
+| Nov 12   | CSS Flex and Media Queries                         | Incomplete |
+| Nov 14   | Testing MVP Requirements                           | Incomplete |
+| Nov 14   | Post-MVP and Advanced CSS                          | Incomplete |
 
 ## Timeframes
 
