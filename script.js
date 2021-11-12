@@ -1,14 +1,50 @@
 //STEPS
 const playBtnEl = document.querySelector(".play-btn");
+const gameScreenEl = document.querySelector(".game-background");
 // console.log(`playBtnEl`, playBtnEl);
+// console.log(`gameScreenEl`, gameScreenEl);
 
 // 1. User clicks play button
 playBtnEl.addEventListener("click", function () {
   console.log("click");
-});
-// random pokemon sprites render on background screen
-// pokemon move around within container of div
+  // random pokemon sprites render on background screen
+  let pokeArr = [];
 
+  while (pokeArr.length < 9) {
+    let randomPokeId = Math.trunc(Math.random() * 898) + 1;
+    pokeArr.push({
+      img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokeId}.png`,
+      id: randomPokeId,
+    });
+  }
+  console.log(`pokeArr`, pokeArr);
+
+  pokeArr.forEach((poke) => {
+    const pokemon = document.createElement("img");
+    pokemon.classList.add("pokemon");
+    pokemon.src = poke.img;
+    pokemon.alt = poke.id;
+    pokemon.setAttribute("id", poke.id);
+    movePoke(pokemon);
+    gameScreenEl.append(pokemon);
+
+    setInterval(function () {
+      movePoke(pokemon);
+    }, 1500);
+  });
+});
+console.log(gameScreenEl.clientHeight);
+console.log(gameScreenEl.clientWidth);
+
+// pokemon move around within container of div
+function movePoke(pokeObj) {
+  pokeObj.style.top = `${Math.floor(
+    Math.random() * (gameScreenEl.clientHeight * 0.85)
+  )}px`;
+  pokeObj.style.left = `${Math.floor(
+    Math.random() * (gameScreenEl.clientWidth * 0.95)
+  )}px`;
+}
 //2. User Clicks on pokemon
 //pokemon becomes pokeball
 //pokemon removed from screen
