@@ -6,7 +6,7 @@ const gameScreenEl = document.querySelector(".game-background");
 const pokeDeckContainerEL = document.querySelector(".pokemon-container");
 // console.log(`playBtnEl`, playBtnEl);
 // console.log(`gameScreenEl`, gameScreenEl);
-console.log(`pokeDeckContainerEL`, pokeDeckContainerEL);
+// console.log(`pokeDeckContainerEL`, pokeDeckContainerEL);
 
 //============================
 // Functions
@@ -27,19 +27,27 @@ const fetchPoke = async (id) => {
   try {
     const resp = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     console.log(resp.data);
+    if (resp.data) renderPokeCard(resp.data);
   } catch (error) {
     console.error(error);
   }
 };
 
 // pokemon is add to "collection"
-function collect(pokeObj) {
+function renderPokeCard(pokeObj) {
   const pokeCardEl = document.createElement("div");
   pokeCardEl.classList.add("collection-card");
   pokeCardEl.value = pokeObj.id;
   const pokeImgEl = document.createElement("img");
   pokeImgEl.classList.add("poke-img");
   pokeImgEl.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeObj.id}.png`;
+  const pokeTitleEl = document.createElement("p");
+  pokeTitleEl.classList.add("poke-name");
+  pokeTitleEl.textContent = pokeObj.name.toUpperCase();
+
+  pokeDeckContainerEL.appendChild(pokeCardEl);
+  pokeCardEl.appendChild(pokeImgEl);
+  pokeCardEl.appendChild(pokeTitleEl);
 }
 
 //============================
