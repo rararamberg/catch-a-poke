@@ -1,9 +1,50 @@
-//STEPS
+//============================
+// Grab Elements
+//============================
 const playBtnEl = document.querySelector(".play-btn");
 const gameScreenEl = document.querySelector(".game-background");
+const pokeDeckContainerEL = document.querySelector(".pokemon-container");
 // console.log(`playBtnEl`, playBtnEl);
 // console.log(`gameScreenEl`, gameScreenEl);
+console.log(`pokeDeckContainerEL`, pokeDeckContainerEL);
 
+//============================
+// Functions
+//============================
+
+// pokemon move around within container of div
+function movePoke(pokeObj) {
+  pokeObj.style.top = `${Math.floor(
+    Math.random() * (gameScreenEl.clientHeight * 0.85)
+  )}px`;
+  pokeObj.style.left = `${Math.floor(
+    Math.random() * (gameScreenEl.clientWidth * 0.95)
+  )}px`;
+}
+
+// API request(s) made to poke API
+const fetchPoke = async (id) => {
+  try {
+    const resp = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    console.log(resp.data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// pokemon is add to "collection"
+function collect(pokeObj) {
+  const pokeCardEl = document.createElement("div");
+  pokeCardEl.classList.add("collection-card");
+  pokeCardEl.value = pokeObj.id;
+  const pokeImgEl = document.createElement("img");
+  pokeImgEl.classList.add("poke-img");
+  pokeImgEl.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeObj.id}.png`;
+}
+
+//============================
+// GAME STEPS
+//============================
 // 1. User clicks play button
 playBtnEl.addEventListener("click", function () {
   // console.log("click");
@@ -33,32 +74,20 @@ playBtnEl.addEventListener("click", function () {
       movePoke(pokemon);
     }, 1500);
 
+    //2. User Clicks on pokemon
     pokemon.addEventListener("click", function () {
       console.log(pokemon.id);
+      //pokemon becomes pokeball
       pokemon.src =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
+      //pokemon removed from screen
       setTimeout(function () {
         pokemon.remove();
+        fetchPoke(pokemon.id);
       }, 2000);
     });
   });
 });
-// console.log(gameScreenEl.clientHeight);
-// console.log(gameScreenEl.clientWidth);
-
-// pokemon move around within container of div
-function movePoke(pokeObj) {
-  pokeObj.style.top = `${Math.floor(
-    Math.random() * (gameScreenEl.clientHeight * 0.85)
-  )}px`;
-  pokeObj.style.left = `${Math.floor(
-    Math.random() * (gameScreenEl.clientWidth * 0.95)
-  )}px`;
-}
-//2. User Clicks on pokemon
-//pokemon becomes pokeball
-//pokemon removed from screen
-// pokemon is add to "collection"
 
 //3. user clicks on last pokemon in game
 // collection not hidden
