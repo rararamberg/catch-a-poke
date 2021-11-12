@@ -5,6 +5,35 @@ body {
 }
 
 header {
+  padding: 15px 10px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+}
+
+.game-container {
+  max-width: 98vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-background {
+  max-width: 88%;
+  height: auto;
+  margin: 3px 0 15px 0;
+  border-radius: 8px;
+}
+
+.play-btn {
+  width: 13rem;
+  padding: 10px 5px;
+  margin: 8px 0;
+  border-radius: 8px;
 }
