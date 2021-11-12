@@ -47,3 +47,7 @@ h1 {
   position: absolute;
   transition: top 2s, left 2s;
 }
+
+.pokemon:hover {
+  cursor: grab;
+}

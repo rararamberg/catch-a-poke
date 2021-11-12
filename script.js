@@ -6,7 +6,7 @@ const gameScreenEl = document.querySelector(".game-background");
 
 // 1. User clicks play button
 playBtnEl.addEventListener("click", function () {
-  console.log("click");
+  // console.log("click");
   // random pokemon sprites render on background screen
   let pokeArr = [];
 
@@ -28,13 +28,20 @@ playBtnEl.addEventListener("click", function () {
     movePoke(pokemon);
     gameScreenEl.append(pokemon);
 
+    // pokemon move around within container of div
     setInterval(function () {
       movePoke(pokemon);
     }, 1500);
+
+    pokemon.addEventListener("click", function () {
+      console.log(pokemon.id);
+      pokemon.src =
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
+    });
   });
 });
-console.log(gameScreenEl.clientHeight);
-console.log(gameScreenEl.clientWidth);
+// console.log(gameScreenEl.clientHeight);
+// console.log(gameScreenEl.clientWidth);
 
 // pokemon move around within container of div
 function movePoke(pokeObj) {
