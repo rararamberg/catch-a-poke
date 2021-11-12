@@ -10523,8 +10523,8 @@ Catch-a-Poké is a game that allows user to catch different types of pokemon. On
 
 | Day      | Deliverable                                        | Status     |
 | -------- | -------------------------------------------------- | ---------- |
-| Nov 9-10 | Prompt / Wireframes / Priority Matrix / Timeframes | Incomplete |
-| Nov 10   | Core Application Structure (HTML, CSS, etc.)       | Incomplete |
+| Nov 9-10 | Prompt / Wireframes / Priority Matrix / Timeframes | Complete   |
+| Nov 10   | Core Application Structure (HTML, CSS, etc.)       | Complete   |
 | Nov 10   | Pseudocode JS Steps                                | Incomplete |
 | Nov 10   | API GET request function                           | Incomplete |
 | Nov 10   | Append Pokemon Images to Screen                    | Incomplete |
@@ -10541,7 +10541,7 @@ Catch-a-Poké is a game that allows user to catch different types of pokemon. On
 
 | Component                                    | Priority | Estimated Time | Time Invested | Actual Time |
 | -------------------------------------------- | :------: | :------------: | :-----------: | :---------: |
-| Core Application Structure (HTML, CSS, etc.) |    H     |     1.5hrs     |     Xhrs      |    Xhrs     |
+| Core Application Structure (HTML, CSS, etc.) |    H     |     1.5hrs     |    0.5hrs     |    Xhrs     |
 | Pseudocode JS Steps                          |    H     |     1.0hrs     |     Xhrs      |    Xhrs     |
 | JS: API request function and test            |    H     |     1.0hrs     |     2hrs      |    Xhrs     |
 | JS: Append Append Pokémon to Screen          |    H     |     1.5hrs     |     2hrs      |    Xhrs     |
