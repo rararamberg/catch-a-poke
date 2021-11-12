@@ -1,4 +1,10 @@
 body {
   margin: 0 auto;
   text-align: center;
+  height: 100vh;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
 }
