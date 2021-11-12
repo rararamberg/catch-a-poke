@@ -37,6 +37,9 @@ playBtnEl.addEventListener("click", function () {
       console.log(pokemon.id);
       pokemon.src =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
+      setTimeout(function () {
+        pokemon.remove();
+      }, 2000);
     });
   });
 });
