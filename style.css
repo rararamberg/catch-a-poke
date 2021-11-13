@@ -51,3 +51,34 @@ h1 {
 .pokemon:hover {
   cursor: grab;
 }
+
+.pokemon-container {
+  width: 95%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.collection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.collection h2 {
+  margin: 0 25px;
+}
+.collection-card {
+  width: 25%;
+  height: auto;
+  margin: 10px 15px;
+}
+
+.hidden {
+  display: none;
+}

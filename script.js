@@ -4,9 +4,11 @@
 const playBtnEl = document.querySelector(".play-btn");
 const gameScreenEl = document.querySelector(".game-background");
 const pokeDeckContainerEL = document.querySelector(".pokemon-container");
+const collectionEl = document.querySelector(".collection-container");
 // console.log(`playBtnEl`, playBtnEl);
 // console.log(`gameScreenEl`, gameScreenEl);
 // console.log(`pokeDeckContainerEL`, pokeDeckContainerEL);
+// console.log(`collectionEl`, collectionEl);
 
 //============================
 // Functions
@@ -50,6 +52,20 @@ function renderPokeCard(pokeObj) {
   pokeCardEl.appendChild(pokeTitleEl);
 }
 
+// check how many pokemon are left
+const checkForLast = function () {
+  const pokemons = document.querySelectorAll(".pokemon");
+  console.log(`pokemons`, pokemons.length);
+  //3. user clicks on last pokemon in game
+  if (pokemons.length === 0) {
+    console.log("Show collection");
+    // collection not hidden
+    // user sees pokemon they collected
+    collectionEl.classList.remove("hidden");
+    // play button says "new game"
+    playBtnEl.textContent = "NEW GAME";
+  }
+};
 //============================
 // GAME STEPS
 //============================
@@ -91,16 +107,13 @@ playBtnEl.addEventListener("click", function () {
       //pokemon removed from screen
       setTimeout(function () {
         pokemon.remove();
+        //3. user clicks on last pokemon in game
+        checkForLast();
         fetchPoke(pokemon.id);
       }, 2000);
     });
   });
 });
-
-//3. user clicks on last pokemon in game
-// collection not hidden
-// user sees pokemon they collected
-// play button says "new game"
 
 //4. User clicks on pokemon card in collection
 // API request(s) made to poke API
