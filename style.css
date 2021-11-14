@@ -82,3 +82,28 @@ h1 {
 .hidden {
   display: none;
 }
+
+.modal {
+  position: fixed;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  width: 25%;
+  height: 30%;
+  transform: translate(-50%, -50%);
+  padding: 6rem;
+  border-radius: 10px;
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+  background-color: azure;
+  z-index: 10;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  z-index: 5;
+}
