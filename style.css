@@ -97,6 +97,12 @@ h1 {
   background-color: azure;
   z-index: 10;
 }
+.close-modal {
+  color: blue;
+  position: absolute;
+  top: 3%;
+  right: 2%;
+}
 .overlay {
   position: fixed;
   top: 0;
