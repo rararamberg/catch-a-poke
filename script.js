@@ -172,7 +172,7 @@ const checkForLast = function () {
     // user sees pokemon they collected
     collectionEl.classList.remove("hidden");
     // play button says "new game"
-    playBtnEl.classList.remove("hidden");
+    playBtnEl.disabled = false;
     playBtnEl.textContent = "NEW GAME";
   }
 };
@@ -184,7 +184,8 @@ playBtnEl.addEventListener("click", function () {
   // console.log("click");
   // random pokemon sprites render on background screen
   collectionEl.classList.add("hidden");
-  playBtnEl.classList.add("hidden");
+  playBtnEl.disabled = true;
+  playBtnEl.textContent = "PLAY!";
   let pokeArr = [];
 
   while (pokeArr.length < 4) {
