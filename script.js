@@ -156,6 +156,11 @@ const removePrevPokeInfo = function () {
   if (prevPokeInfo) modalEl.removeChild(prevPokeInfo);
 };
 
+const removePrevCollection = function () {
+  const prevPokeInfo = document.querySelector(".collection-card");
+  while (prevPokeInfo) pokeDeckContainerEL.removeChild(prevPokeInfo);
+};
+
 // check how many pokemon are left
 const checkForLast = function () {
   const pokemons = document.querySelectorAll(".pokemon");
@@ -167,6 +172,7 @@ const checkForLast = function () {
     // user sees pokemon they collected
     collectionEl.classList.remove("hidden");
     // play button says "new game"
+    playBtnEl.classList.remove("hidden");
     playBtnEl.textContent = "NEW GAME";
   }
 };
@@ -177,6 +183,8 @@ const checkForLast = function () {
 playBtnEl.addEventListener("click", function () {
   // console.log("click");
   // random pokemon sprites render on background screen
+  collectionEl.classList.add("hidden");
+  playBtnEl.classList.add("hidden");
   let pokeArr = [];
 
   while (pokeArr.length < 4) {
@@ -217,9 +225,12 @@ playBtnEl.addEventListener("click", function () {
       }, 2000);
     });
   });
+  removePrevCollection();
 });
 
 //6. User clicks "new game" button (play)
+//if text context says Play render poke
+//else if says new game
 //previous data in collection removed
 // collection div hidden
 //new game begins
