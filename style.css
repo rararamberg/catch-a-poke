@@ -88,14 +88,25 @@ h1 {
   margin: 0 auto;
   top: 50%;
   left: 50%;
-  width: 25%;
-  height: 30%;
+  width: 30%;
+  height: fit-content;
   transform: translate(-50%, -50%);
-  padding: 6rem;
+  padding: 3rem;
   border-radius: 10px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   background-color: azure;
   z-index: 10;
+}
+
+.detail-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.action-container {
+  text-align: left;
 }
 .close-modal {
   color: blue;

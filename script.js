@@ -61,10 +61,11 @@ function renderPokeCard(pokeObj) {
   pokeCardEl.addEventListener("click", function () {
     console.log("card clicked");
     // modal and overlay is visible
+
     renderPokeModal(pokeObj);
     openModal();
   });
-
+  // 5.  User clicks out of or clicks exit button
   closeModalBtn.addEventListener("click", closeModal);
 }
 // API request(s) made to poke API
@@ -74,13 +75,15 @@ const renderPokeModal = function (pokeObj) {
   //create container div for modals
   const pokeDivEl = document.createElement("div");
   const pokeBasicEl = document.createElement("div");
+  const pokeDetailEl = document.createElement("div");
   const pokeActionEl = document.createElement("div");
   const pokeAbilityEl = document.createElement("div");
   const pokeMovesEl = document.createElement("div");
   const pokeEggEl = document.createElement("div");
   // add class names to containers
-  pokeDivEl.classList.add("poke-details");
+  pokeDivEl.classList.add("poke-modal-card");
   pokeBasicEl.classList.add("basic-info");
+  pokeDetailEl.classList.add("detail-info");
   pokeActionEl.classList.add("action-container");
   pokeAbilityEl.classList.add("abilities");
   pokeMovesEl.classList.add("moves");
@@ -108,22 +111,49 @@ const renderPokeModal = function (pokeObj) {
     pokeAbilityEl.appendChild(abilityEl);
   });
   //moves
+  if (pokeObj.moves.length > 0) {
+    const movesTitleEl = document.createElement("h4");
+    movesTitleEl.textContent = "Moves:";
+    pokeMovesEl.appendChild(movesTitleEl);
+    for (let i = 0; i < 3; i++) {
+      const moveEl = document.createElement("p");
+      moveEl.textContent = `• ${pokeObj.moves[i].move.name}`;
+      pokeMovesEl.appendChild(moveEl);
+    }
+  }
   //eggs
-
+  const eggTitleEl = document.createElement("h4");
+  eggTitleEl.textContent = "Egg Groups:";
+  const eggEmojisEl = document.createElement("p");
+  eggEmojisEl.textContent = "🐣 🐣 🐣 "; // FIX LATER //
+  pokeEggEl.appendChild(eggTitleEl);
+  pokeEggEl.appendChild(eggEmojisEl);
   //append sub and overarching containers to modal
   pokeActionEl.appendChild(pokeAbilityEl);
+  pokeActionEl.appendChild(pokeMovesEl);
+  pokeDetailEl.appendChild(pokeActionEl);
+  pokeDetailEl.appendChild(pokeEggEl);
   pokeDivEl.appendChild(pokeBasicEl);
-  pokeDivEl.appendChild(pokeActionEl);
+  pokeDivEl.appendChild(pokeDetailEl);
   modalEl.appendChild(pokeDivEl);
 };
 //Open and close modal window
 const openModal = function () {
+  // modal and overlay display
   modalEl.classList.remove("hidden");
   overlayEl.classList.remove("hidden");
 };
 const closeModal = function () {
+  //modal and overlay hidden
   modalEl.classList.add("hidden");
   overlayEl.classList.add("hidden");
+  removePrevPokeInfo();
+};
+
+// previous data removed to allow new poke to render when clicked
+const removePrevPokeInfo = function () {
+  const prevPokeInfo = document.querySelector(".poke-modal-card");
+  if (prevPokeInfo) modalEl.removeChild(prevPokeInfo);
 };
 
 // check how many pokemon are left
@@ -188,10 +218,6 @@ playBtnEl.addEventListener("click", function () {
     });
   });
 });
-
-//5. User clicks out of or clicks exit button
-//modal and overlay hidden
-// previous data removed to allow new poke to render when clicked
 
 //6. User clicks "new game" button (play)
 //previous data in collection removed
