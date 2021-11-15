@@ -33,16 +33,30 @@ function movePoke(pokeObj) {
 // API request(s) made to poke API
 const fetchPoke = async (id) => {
   try {
-    const resp = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    console.log(resp.data);
-    if (resp.data) renderPokeCard(resp.data);
+    const respPoke = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+    const respSpecies = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon-species/${id}`
+    );
+    console.log(respSpecies.data);
+    if (respPoke.data && respSpecies.data)
+      renderPokeCard(respPoke.data, respSpecies.data);
   } catch (error) {
     console.error(error);
   }
 };
 
+// const fetchSpeciesInfo = async (id) => {
+//   try {
+//     const resp = await axios.get(
+//       `https://pokeapi.co/api/v2/pokemon-species/${id}`
+//     );
+//     if (resp.data) return resp.data;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 // pokemon is add to "collection"
-function renderPokeCard(pokeObj) {
+function renderPokeCard(pokeObj, speciesObj) {
   const pokeCardEl = document.createElement("div");
   pokeCardEl.classList.add("collection-card");
   pokeCardEl.value = pokeObj.id;
@@ -59,10 +73,10 @@ function renderPokeCard(pokeObj) {
 
   //4. User clicks on pokemon card in collection
   pokeCardEl.addEventListener("click", function () {
-    console.log("card clicked");
+    // console.log("card clicked");
     // modal and overlay is visible
 
-    renderPokeModal(pokeObj);
+    renderPokeModal(pokeObj, speciesObj);
     openModal();
   });
   // 5.  User clicks out of or clicks exit button
@@ -70,8 +84,9 @@ function renderPokeCard(pokeObj) {
 }
 // API request(s) made to poke API
 // Poke data appends to modal window
-const renderPokeModal = function (pokeObj) {
-  console.log(pokeObj);
+const renderPokeModal = function (pokeObj, speciesObj) {
+  console.log(speciesObj.flavor_text_entries);
+  // renderEmojisEggs(speciesObj.egg_groups); // test
   //create container div for modals
   const pokeDivEl = document.createElement("div");
   const pokeBasicEl = document.createElement("div");
@@ -97,7 +112,10 @@ const renderPokeModal = function (pokeObj) {
   pokeImgEl.src = pokeObj.sprites.front_default;
   pokeImgEl.alt = pokeObj.name;
   const pokeTextEl = document.createElement("p");
-  pokeTextEl.textContent = "FLAVOR TEXT GOES HERE"; //  FIX LATER  //
+  pokeTextEl.textContent =
+    speciesObj.flavor_text_entries.length > 0
+      ? renderDescription(speciesObj.flavor_text_entries)
+      : ""; //  FIX LATER  //
   pokeBasicEl.appendChild(pokeNameEl);
   pokeBasicEl.appendChild(pokeImgEl);
   pokeBasicEl.appendChild(pokeTextEl);
@@ -125,7 +143,10 @@ const renderPokeModal = function (pokeObj) {
   const eggTitleEl = document.createElement("h4");
   eggTitleEl.textContent = "Egg Groups:";
   const eggEmojisEl = document.createElement("p");
-  eggEmojisEl.textContent = "🐣 🐣 🐣 "; // FIX LATER //
+  eggEmojisEl.textContent =
+    speciesObj.egg_groups.length > 0
+      ? renderEmojisEggs(speciesObj.egg_groups)
+      : "❓"; // FIX LATER //
   pokeEggEl.appendChild(eggTitleEl);
   pokeEggEl.appendChild(eggEmojisEl);
   //append sub and overarching containers to modal
@@ -161,19 +182,54 @@ const removePrevCollection = function () {
   while (prevPokeInfo) pokeDeckContainerEL.removeChild(prevPokeInfo);
 };
 
+// render emojis based on group
+const renderEmojisEggs = function (eggArr) {
+  let emojis = "";
+  eggArr.forEach((egg) => {
+    if (egg.name === "monster") emojis += " 👹 ";
+    else if (egg.name === "amorphous") emojis += " ✨ ";
+    else if (egg.name === "bug") emojis += " 🐛 ";
+    else if (egg.name === "dragon") emojis += " 🐉 ";
+    else if (egg.name === "ditto") emojis += " 🟣 ";
+    else if (egg.name === "fairy") emojis += " 🧚‍♀️ ";
+    else if (egg.name === "field" || egg.name === "ground") emojis += " 🏞 ";
+    else if (egg.name === "flying") emojis += " 🦅 ";
+    else if (egg.name === "grass") emojis += " 🌱 ";
+    else if (egg.name === "human-like") emojis += " 🙆🏻 ";
+    else if (egg.name === "mineral") emojis += " 🪨 ";
+    else if (egg.name === "water1") emojis += " 🐸 ";
+    else if (egg.name === "water2") emojis += " 🐟 ";
+    else if (egg.name === "water3") emojis += " 🦀 ";
+    else emojis += " ❓ ";
+  });
+  console.log(emojis);
+  return emojis;
+};
+
+const renderDescription = function (flavorArr) {
+  let descriptionText = "";
+  let obj = flavorArr.find((entry) => {
+    if (entry.language.name === "en") return entry;
+  });
+  // console.log(obj.flavor_text);
+  // console.log(descriptionText);
+  descriptionText = obj.flavor_text;
+  return descriptionText;
+};
 // check how many pokemon are left
 const checkForLast = function () {
   const pokemons = document.querySelectorAll(".pokemon");
-  console.log(`pokemons`, pokemons.length);
+  // console.log(`pokemons`, pokemons.length);
   //3. user clicks on last pokemon in game
   if (pokemons.length === 0) {
-    console.log("Show collection");
+    // console.log("Show collection");
     // collection not hidden
     // user sees pokemon they collected
     collectionEl.classList.remove("hidden");
     // play button says "new game"
-    playBtnEl.disabled = false;
     playBtnEl.textContent = "NEW GAME";
+    // 6. User clicks "new game" button (play)
+    playBtnEl.disabled = false;
   }
 };
 //============================
@@ -182,12 +238,13 @@ const checkForLast = function () {
 // 1. User clicks play button
 playBtnEl.addEventListener("click", function () {
   // console.log("click");
-  // random pokemon sprites render on background screen
+  // collection div hidden
   collectionEl.classList.add("hidden");
   playBtnEl.disabled = true;
   playBtnEl.textContent = "PLAY!";
   let pokeArr = [];
 
+  // generate random pokemon ids
   while (pokeArr.length < 4) {
     let randomPokeId = Math.trunc(Math.random() * 898) + 1;
     pokeArr.push({
@@ -195,8 +252,9 @@ playBtnEl.addEventListener("click", function () {
       id: randomPokeId,
     });
   }
-  console.log(`pokeArr`, pokeArr);
+  // console.log(`pokeArr`, pokeArr);
 
+  // random pokemon sprites render on background screen
   pokeArr.forEach((poke) => {
     const pokemon = document.createElement("img");
     pokemon.classList.add("pokemon");
@@ -213,7 +271,7 @@ playBtnEl.addEventListener("click", function () {
 
     //2. User Clicks on pokemon
     pokemon.addEventListener("click", function () {
-      console.log(pokemon.id);
+      // console.log(pokemon.id);
       //pokemon becomes pokeball
       pokemon.src =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
@@ -228,13 +286,6 @@ playBtnEl.addEventListener("click", function () {
   });
   removePrevCollection();
 });
-
-//6. User clicks "new game" button (play)
-//if text context says Play render poke
-//else if says new game
-//previous data in collection removed
-// collection div hidden
-//new game begins
 
 //Prev notes
 // const elem = document.createElement('div');
