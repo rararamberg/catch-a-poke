@@ -5,10 +5,16 @@ const playBtnEl = document.querySelector(".play-btn");
 const gameScreenEl = document.querySelector(".game-background");
 const pokeDeckContainerEL = document.querySelector(".pokemon-container");
 const collectionEl = document.querySelector(".collection-container");
+const modalEl = document.querySelector(".modal");
+const overlayEl = document.querySelector(".overlay");
+const closeModalBtn = document.querySelector(".close-modal");
+// console.log(`closeModalBtn`, closeModalBtn);
 // console.log(`playBtnEl`, playBtnEl);
 // console.log(`gameScreenEl`, gameScreenEl);
 // console.log(`pokeDeckContainerEL`, pokeDeckContainerEL);
 // console.log(`collectionEl`, collectionEl);
+// console.log(`modalEl`, modalEl);
+// console.log(`overlayEl`, overlayEl);
 
 //============================
 // Functions
@@ -50,7 +56,75 @@ function renderPokeCard(pokeObj) {
   pokeDeckContainerEL.appendChild(pokeCardEl);
   pokeCardEl.appendChild(pokeImgEl);
   pokeCardEl.appendChild(pokeTitleEl);
+
+  //4. User clicks on pokemon card in collection
+  pokeCardEl.addEventListener("click", function () {
+    console.log("card clicked");
+    // modal and overlay is visible
+    renderPokeModal(pokeObj);
+    openModal();
+  });
+
+  closeModalBtn.addEventListener("click", closeModal);
 }
+// API request(s) made to poke API
+// Poke data appends to modal window
+const renderPokeModal = function (pokeObj) {
+  console.log(pokeObj);
+  //create container div for modals
+  const pokeDivEl = document.createElement("div");
+  const pokeBasicEl = document.createElement("div");
+  const pokeActionEl = document.createElement("div");
+  const pokeAbilityEl = document.createElement("div");
+  const pokeMovesEl = document.createElement("div");
+  const pokeEggEl = document.createElement("div");
+  // add class names to containers
+  pokeDivEl.classList.add("poke-details");
+  pokeBasicEl.classList.add("basic-info");
+  pokeActionEl.classList.add("action-container");
+  pokeAbilityEl.classList.add("abilities");
+  pokeMovesEl.classList.add("moves");
+  pokeEggEl.classList.add("egg-groups");
+
+  //Add and append context to sub-containers
+  //basic
+  const pokeNameEl = document.createElement("h2");
+  pokeNameEl.textContent = pokeObj.name;
+  const pokeImgEl = document.createElement("img");
+  pokeImgEl.src = pokeObj.sprites.front_default;
+  pokeImgEl.alt = pokeObj.name;
+  const pokeTextEl = document.createElement("p");
+  pokeTextEl.textContent = "FLAVOR TEXT GOES HERE"; //  FIX LATER  //
+  pokeBasicEl.appendChild(pokeNameEl);
+  pokeBasicEl.appendChild(pokeImgEl);
+  pokeBasicEl.appendChild(pokeTextEl);
+  //abilities
+  const abilitiesTitleEl = document.createElement("h4");
+  abilitiesTitleEl.textContent = "Abilities:";
+  pokeAbilityEl.appendChild(abilitiesTitleEl);
+  pokeObj.abilities.forEach((ability) => {
+    const abilityEl = document.createElement("p");
+    abilityEl.textContent = `• ${ability.ability.name}`;
+    pokeAbilityEl.appendChild(abilityEl);
+  });
+  //moves
+  //eggs
+
+  //append sub and overarching containers to modal
+  pokeActionEl.appendChild(pokeAbilityEl);
+  pokeDivEl.appendChild(pokeBasicEl);
+  pokeDivEl.appendChild(pokeActionEl);
+  modalEl.appendChild(pokeDivEl);
+};
+//Open and close modal window
+const openModal = function () {
+  modalEl.classList.remove("hidden");
+  overlayEl.classList.remove("hidden");
+};
+const closeModal = function () {
+  modalEl.classList.add("hidden");
+  overlayEl.classList.add("hidden");
+};
 
 // check how many pokemon are left
 const checkForLast = function () {
@@ -75,7 +149,7 @@ playBtnEl.addEventListener("click", function () {
   // random pokemon sprites render on background screen
   let pokeArr = [];
 
-  while (pokeArr.length < 9) {
+  while (pokeArr.length < 4) {
     let randomPokeId = Math.trunc(Math.random() * 898) + 1;
     pokeArr.push({
       img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokeId}.png`,
@@ -114,11 +188,6 @@ playBtnEl.addEventListener("click", function () {
     });
   });
 });
-
-//4. User clicks on pokemon card in collection
-// API request(s) made to poke API
-// Poke data appends to modal window
-// modal and overlay is visible
 
 //5. User clicks out of or clicks exit button
 //modal and overlay hidden
