@@ -10525,14 +10525,14 @@ Catch-a-Poké is a game that allows user to catch different types of pokemon. On
 | -------- | -------------------------------------------------- | ---------- |
 | Nov 9-10 | Prompt / Wireframes / Priority Matrix / Timeframes | Complete   |
 | Nov 10   | Core Application Structure (HTML, CSS, etc.)       | Complete   |
-| Nov 10   | Pseudocode JS Steps                                | Incomplete |
-| Nov 10   | API GET request function                           | Incomplete |
-| Nov 10   | Append Pokemon Images to Screen                    | Incomplete |
-| Nov 11   | addEventListeners to Pokemon images                | Incomplete |
-| Nov 11   | Collection section renders pokemon                 | Incomplete |
+| Nov 10   | Pseudocode JS Steps                                | Complete   |
+| Nov 10   | API GET request function                           | Complete   |
+| Nov 10   | Append Pokemon Images to Screen                    | Complete   |
+| Nov 11   | addEventListeners to Pokemon images                | Complete   |
+| Nov 11   | Collection section renders pokemon                 | Complete   |
 | Nov 11   | Modal Window and API Get Request                   | Incomplete |
-| Nov 12   | Generate Random Pokemon                            | Incomplete |
-| Nov 12   | Remove Previous Results and play new game          | Incomplete |
+| Nov 12   | Generate Random Pokemon                            | Complete   |
+| Nov 12   | Remove Previous Results and play new game          | Complete   |
 | Nov 12   | CSS Flex and Media Queries                         | Incomplete |
 | Nov 14   | Testing MVP Requirements                           | Incomplete |
 | Nov 14   | Post-MVP and Advanced CSS                          | Incomplete |
