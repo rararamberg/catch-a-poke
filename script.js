@@ -107,7 +107,7 @@ const renderPokeModal = function (pokeObj, speciesObj) {
   //Add and append context to sub-containers
   //basic
   const pokeNameEl = document.createElement("h2");
-  pokeNameEl.textContent = pokeObj.name;
+  pokeNameEl.textContent = pokeObj.name.toUpperCase();
   const pokeImgEl = document.createElement("img");
   pokeImgEl.src = pokeObj.sprites.front_default;
   pokeImgEl.alt = pokeObj.name;
@@ -121,7 +121,7 @@ const renderPokeModal = function (pokeObj, speciesObj) {
   pokeBasicEl.appendChild(pokeTextEl);
   //abilities
   const abilitiesTitleEl = document.createElement("h4");
-  abilitiesTitleEl.textContent = "Abilities:";
+  abilitiesTitleEl.textContent = "Abilities";
   pokeAbilityEl.appendChild(abilitiesTitleEl);
   pokeObj.abilities.forEach((ability) => {
     const abilityEl = document.createElement("p");
@@ -131,7 +131,7 @@ const renderPokeModal = function (pokeObj, speciesObj) {
   //moves
   if (pokeObj.moves.length > 0) {
     const movesTitleEl = document.createElement("h4");
-    movesTitleEl.textContent = "Moves:";
+    movesTitleEl.textContent = "Moves";
     pokeMovesEl.appendChild(movesTitleEl);
     for (let i = 0; i < 3; i++) {
       const moveEl = document.createElement("p");
@@ -141,7 +141,7 @@ const renderPokeModal = function (pokeObj, speciesObj) {
   }
   //eggs
   const eggTitleEl = document.createElement("h4");
-  eggTitleEl.textContent = "Egg Groups:";
+  eggTitleEl.textContent = "Egg Groups";
   const eggEmojisEl = document.createElement("p");
   eggEmojisEl.textContent =
     speciesObj.egg_groups.length > 0
@@ -178,8 +178,10 @@ const removePrevPokeInfo = function () {
 };
 
 const removePrevCollection = function () {
-  const prevPokeInfo = document.querySelector(".collection-card");
-  while (prevPokeInfo) pokeDeckContainerEL.removeChild(prevPokeInfo);
+  const pokeCardContainer = document.querySelector(".pokemon-container");
+  while (pokeCardContainer.firstChild) {
+    pokeCardContainer.removeChild(pokeCardContainer.firstChild);
+  }
 };
 
 // render emojis based on group
@@ -239,9 +241,12 @@ const checkForLast = function () {
 playBtnEl.addEventListener("click", function () {
   // console.log("click");
   // collection div hidden
-  collectionEl.classList.add("hidden");
-  playBtnEl.disabled = true;
-  playBtnEl.textContent = "PLAY!";
+  if (playBtnEl.textContent === "NEW GAME") {
+    removePrevCollection();
+    collectionEl.classList.add("hidden");
+    playBtnEl.disabled = true;
+    playBtnEl.textContent = "PLAY!";
+  }
   let pokeArr = [];
 
   // generate random pokemon ids
@@ -284,7 +289,6 @@ playBtnEl.addEventListener("click", function () {
       }, 2000);
     });
   });
-  removePrevCollection();
 });
 
 //Prev notes

@@ -161,6 +161,9 @@ h1 {
   text-align: left;
 }
 
+.egg-groups p {
+  font-size: 45px;
+}
 .close-modal {
   color: blue;
   position: absolute;
