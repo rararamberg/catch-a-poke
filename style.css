@@ -3,10 +3,11 @@ body {
   text-align: center;
   height: 100vh;
   background-color: #2d2c2c;
+  font-family: "Roboto", sans-serif;
 }
 
 header {
-  padding: 10px 10px;
+  padding: 10px 15px 20px 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -17,21 +18,23 @@ h1 {
   margin: 0;
   color: #ffec44;
   text-shadow: 2px 2px 2px #1822ff;
+  font-family: "Annie Use Your Telescope", cursive;
+  font-size: 78px;
 }
 
 .game-container {
   max-width: 98vw;
-  height: 95vh;
+  height: 78vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .game-background {
   width: 90%;
   height: 80%;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
   border-radius: 8px;
   background-image: url("https://wallpaperaccess.com/full/3551101.png");
   background-position: center;
@@ -90,9 +93,9 @@ h1 {
 .collection h2 {
   margin: 0 25px;
   color: #f9f9f9;
-  letter-spacing: 5px;
+  letter-spacing: 20px;
   text-align: center;
-  font-size: 36px;
+  font-size: 62px;
 }
 
 .collection img {
@@ -111,7 +114,8 @@ h1 {
 
 .poke-name {
   color: #f9f9f9;
-  letter-spacing: 4px;
+  letter-spacing: 8px;
+  font-size: 22px;
 }
 
 .hidden {

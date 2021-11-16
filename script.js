@@ -9,6 +9,12 @@ const modalEl = document.querySelector(".modal");
 const overlayEl = document.querySelector(".overlay");
 const closeModalBtn = document.querySelector(".close-modal");
 
+const backgroundArray = [
+  "https://wallpaperaccess.com/full/3551101.png",
+  "https://wallpaperaccess.com/full/1794017.png",
+  "https://i.pinimg.com/originals/47/b9/14/47b91495e80426f8b2d419a23c80da59.png",
+  "https://wallpapermemory.com/uploads/661/pokemon-background-full-hd-279220.jpg",
+];
 //============================
 // Functions
 //============================
@@ -219,6 +225,8 @@ playBtnEl.addEventListener("click", function () {
   // collection div hidden
   if (playBtnEl.textContent === "NEW GAME") {
     removePrevCollection();
+    const randomIndex = Math.trunc(Math.random() * backgroundArray.length);
+    gameScreenEl.style.backgroundImage = `url(${backgroundArray[randomIndex]})`;
     collectionEl.classList.add("hidden");
     playBtnEl.disabled = true;
     playBtnEl.textContent = "PLAY!";
