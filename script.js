@@ -8,13 +8,6 @@ const collectionEl = document.querySelector(".collection-container");
 const modalEl = document.querySelector(".modal");
 const overlayEl = document.querySelector(".overlay");
 const closeModalBtn = document.querySelector(".close-modal");
-// console.log(`closeModalBtn`, closeModalBtn);
-// console.log(`playBtnEl`, playBtnEl);
-// console.log(`gameScreenEl`, gameScreenEl);
-// console.log(`pokeDeckContainerEL`, pokeDeckContainerEL);
-// console.log(`collectionEl`, collectionEl);
-// console.log(`modalEl`, modalEl);
-// console.log(`overlayEl`, overlayEl);
 
 //============================
 // Functions
@@ -37,7 +30,7 @@ const fetchPoke = async (id) => {
     const respSpecies = await axios.get(
       `https://pokeapi.co/api/v2/pokemon-species/${id}`
     );
-    console.log(respSpecies.data);
+
     if (respPoke.data && respSpecies.data)
       renderPokeCard(respPoke.data, respSpecies.data);
   } catch (error) {
@@ -45,16 +38,6 @@ const fetchPoke = async (id) => {
   }
 };
 
-// const fetchSpeciesInfo = async (id) => {
-//   try {
-//     const resp = await axios.get(
-//       `https://pokeapi.co/api/v2/pokemon-species/${id}`
-//     );
-//     if (resp.data) return resp.data;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
 // pokemon is add to "collection"
 function renderPokeCard(pokeObj, speciesObj) {
   const pokeCardEl = document.createElement("div");
@@ -73,10 +56,8 @@ function renderPokeCard(pokeObj, speciesObj) {
 
   //4. User clicks on pokemon card in collection
   pokeCardEl.addEventListener("click", function () {
-    // console.log("card clicked");
-    // modal and overlay is visible
-
     renderPokeModal(pokeObj, speciesObj);
+    // modal and overlay is visible
     openModal();
   });
   // 5.  User clicks out of or clicks exit button
@@ -115,7 +96,7 @@ const renderPokeModal = function (pokeObj, speciesObj) {
   pokeTextEl.textContent =
     speciesObj.flavor_text_entries.length > 0
       ? renderDescription(speciesObj.flavor_text_entries)
-      : ""; //  FIX LATER  //
+      : "";
   pokeBasicEl.appendChild(pokeNameEl);
   pokeBasicEl.appendChild(pokeImgEl);
   pokeBasicEl.appendChild(pokeTextEl);
@@ -146,7 +127,7 @@ const renderPokeModal = function (pokeObj, speciesObj) {
   eggEmojisEl.textContent =
     speciesObj.egg_groups.length > 0
       ? renderEmojisEggs(speciesObj.egg_groups)
-      : "❓"; // FIX LATER //
+      : "❓";
   pokeEggEl.appendChild(eggTitleEl);
   pokeEggEl.appendChild(eggEmojisEl);
   //append sub and overarching containers to modal
@@ -204,7 +185,7 @@ const renderEmojisEggs = function (eggArr) {
     else if (egg.name === "water3") emojis += " 🦀 ";
     else emojis += " ❓ ";
   });
-  console.log(emojis);
+
   return emojis;
 };
 
@@ -213,18 +194,14 @@ const renderDescription = function (flavorArr) {
   let obj = flavorArr.find((entry) => {
     if (entry.language.name === "en") return entry;
   });
-  // console.log(obj.flavor_text);
-  // console.log(descriptionText);
   descriptionText = obj.flavor_text;
   return descriptionText;
 };
 // check how many pokemon are left
 const checkForLast = function () {
   const pokemons = document.querySelectorAll(".pokemon");
-  // console.log(`pokemons`, pokemons.length);
   //3. user clicks on last pokemon in game
   if (pokemons.length === 0) {
-    // console.log("Show collection");
     // collection not hidden
     // user sees pokemon they collected
     collectionEl.classList.remove("hidden");
@@ -239,7 +216,6 @@ const checkForLast = function () {
 //============================
 // 1. User clicks play button
 playBtnEl.addEventListener("click", function () {
-  // console.log("click");
   // collection div hidden
   if (playBtnEl.textContent === "NEW GAME") {
     removePrevCollection();
@@ -257,7 +233,6 @@ playBtnEl.addEventListener("click", function () {
       id: randomPokeId,
     });
   }
-  // console.log(`pokeArr`, pokeArr);
 
   // random pokemon sprites render on background screen
   pokeArr.forEach((poke) => {
@@ -276,7 +251,6 @@ playBtnEl.addEventListener("click", function () {
 
     //2. User Clicks on pokemon
     pokemon.addEventListener("click", function () {
-      // console.log(pokemon.id);
       //pokemon becomes pokeball
       pokemon.src =
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png";
@@ -290,30 +264,3 @@ playBtnEl.addEventListener("click", function () {
     });
   });
 });
-
-//Prev notes
-// const elem = document.createElement('div');
-// elem.classList.add(`5`);
-// console.log(elem.className);
-
-// let pokeArr = [];
-
-// while (pokeArr.length < 20) {
-//   let randomPokeId = Math.trunc(Math.random() * 898) + 1;
-//   pokeArr.push({
-//     img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${randomPokeId}.png`,
-//   });
-// }
-
-// console.log(pokeArr);
-
-// const fetchPoke = async id => {
-//   try {
-//     const resp = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-//     console.log(resp.data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// };
-
-// fetchPoke(elem.className);
