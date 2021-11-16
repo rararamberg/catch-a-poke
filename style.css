@@ -16,7 +16,7 @@ header {
 h1 {
   margin: 0;
   color: #ffec44;
-  border-color: blue;
+  text-shadow: 2px 2px 2px #1822ff;
 }
 
 .game-container {
@@ -40,8 +40,8 @@ h1 {
 }
 
 .play-btn {
-  width: 13rem;
-  padding: 10px 5px;
+  width: fit-content;
+  padding: 10px 15px;
   margin: 8px 0;
   border-radius: 8px;
   background-color: #ff0000;
@@ -84,16 +84,34 @@ h1 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 25px;
 }
 
 .collection h2 {
   margin: 0 25px;
   color: #f9f9f9;
+  letter-spacing: 5px;
+  text-align: center;
+  font-size: 36px;
+}
+
+.collection img {
+  width: 45px;
+  height: auto;
 }
 .collection-card {
   width: 25%;
   height: auto;
   margin: 10px 15px;
+}
+
+.collection-card:hover {
+  cursor: pointer;
+}
+
+.poke-name {
+  color: #f9f9f9;
+  letter-spacing: 4px;
 }
 
 .hidden {
@@ -105,7 +123,7 @@ h1 {
   margin: 0 auto;
   top: 50%;
   left: 50%;
-  width: 30%;
+  width: 35%;
   height: fit-content;
   transform: translate(-50%, -50%);
   padding: 3rem;
@@ -115,6 +133,19 @@ h1 {
   z-index: 10;
 }
 
+.poke-modal-card {
+  letter-spacing: 3px;
+}
+
+.basic-info h2 {
+  font-size: 36px;
+  letter-spacing: 8px;
+}
+
+.basic-info img {
+  width: 225px;
+  height: auto;
+}
 .detail-info {
   display: flex;
   flex-direction: row;
@@ -122,14 +153,26 @@ h1 {
   align-items: flex-start;
 }
 
+.detail-info h4 {
+  font-size: 18px;
+}
+
 .action-container {
   text-align: left;
 }
+
 .close-modal {
   color: blue;
   position: absolute;
   top: 3%;
   right: 2%;
+  background-color: #f9f9f9;
+  border-style: none;
+  font-size: 18px;
+}
+
+.close-modal:hover {
+  cursor: pointer;
 }
 .overlay {
   position: fixed;
